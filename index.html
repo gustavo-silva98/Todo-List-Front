@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="app.js"></script>
+        <title>Generic Ist</title>
+    </head>
+    <body>
+        <div class="wrapper" data-pagina="cadastro" id ="cadastro">
+            <h1>Cadastro</h1>
+            <form>
+                <div>
+                    <label for="name-input"><span class="material-icons">person</span></label>
+                    <input type="text" id="name-input" name="name" placeholder="Nome Completo" required>
+                </div>
+                <div>
+                    <label for="email-input"><span class="material-icons">email</span></label>
+                    <input type="email" id="email-input" name="email" placeholder="Email" required>
+                </div>
+                <div>
+                    <label for="password-input"><span class="material-icons">lock</span></label>
+                    <input type="password" id="password-input" name="password" placeholder="Senha" required>
+                </div>
+                <div>
+                    <label for="repeat-password-input"><span class="material-icons">check_circle</span></label>
+                    <input type="password" id="repeat-password-input" name="repeat-password" placeholder="Confime a Senha" required>
+                </div>
+                <button type="button" onclick="enviarCadastro()">Cadastrar</button>
+                <p> Já tem uma conta? <a href="#" onclick="mudarPagina('login')">Clique aqui</a> para fazer login. </p>
+            </form>
+        </div>
+        <div class="wrapper-ativo" data-pagina="login" id ="login">
+            <h1>Login</h1>
+            <form>
+                <div>
+                    <label for="email-input"><span class="material-icons">email</span></label>
+                    <input type="email" id="email-input-login" name="email" placeholder="Email" required>
+                </div>
+                <div>
+                    <label for="password-input"><span class="material-icons">lock</span></label>
+                    <input type="password" id="password-input-login" name="password" placeholder="Senha" required>
+                </div>
+                <button type="button" onclick="loginGetToken()">LOGIN</button>
+                <p> Ainda não é cadastrado?</p>
+                <p ><a href="#" onclick="mudarPagina('cadastro')">Clique aqui</a> para se cadastrar.</p>
+            </form>
+        </div>
+
+        <div class="wrapper" data-pagina="login-bem-sucedido" id="login-ok">
+            <h1>Login bem-sucedido!</h1>
+            <img src="calma ai paizao.jpg" alt="cat status" class="cat-status200"
+                onclick="mudarPagina('cadastro')" type="'button">
+            <p>Calma aí, paizão! Ainda vamos construir essa parte!</p>
+
+        </div>
+
+</html>
