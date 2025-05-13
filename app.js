@@ -27,17 +27,21 @@ function enviarCadastro() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Sucesso:', data);
-        alert('Cadastro realizado com sucesso!');
-        mudarPagina('login');
+    .then(async response => {
+      const data = await response.json();
+      if (!response.ok) {
+        console.error('Erro no cadastro:', data);
+        alert('Erro: ' + JSON.stringify(data.detail));
+        return;
+      }
+      console.log('Sucesso', data);
+      alert("Cadastro realizado!");
+      mudarPagina('login');
     })
-    .catch((error) => {
-        console.error('Erro:', error);
-        alert('Erro ao realizar o cadastro. Verifique os dados e tente novamente.');
-    });      
-}
+    .catch(err => {
+      console.error('Erro de rede:', err);
+      alert('Erro ao conectar-se ao servidor.');
+    });}
 
 function loginGetToken() {
     const email = document.getElementById('email-input-login').value;
@@ -72,4 +76,3 @@ function loginGetToken() {
         alert('Erro ao conectar-se ao servidor.');
       });
     }
-
