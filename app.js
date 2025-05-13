@@ -11,6 +11,9 @@ function mudarPagina(idNovaPagina) {
 }
 
 function enviarCadastro() {
+    const spinner = document.getElementById('loader');
+    spinner.classList.add('active');
+
     const nome = document.getElementById('name-input').value;
     const email = document.getElementById('email-input').value;
     const senha = document.getElementById('password-input').value;	
@@ -31,7 +34,7 @@ function enviarCadastro() {
       const data = await response.json();
       if (!response.ok) {
         console.error('Erro no cadastro:', data);
-        alert('Erro: ' + JSON.stringify(data.detail));
+        alert('Erro: ' + (data.detail?.[0]?.msg || 'Erro desconhecido'));
         return;
       }
       console.log('Sucesso', data);
@@ -41,9 +44,19 @@ function enviarCadastro() {
     .catch(err => {
       console.error('Erro de rede:', err);
       alert('Erro ao conectar-se ao servidor.');
-    });}
+    }) 
+    .finally (() => {
+      spinner.classList.remove('active');
+    });
+  }
+
+
 
 function loginGetToken() {
+  const spinner = document.getElementById('loader');
+  spinner.classList.add('active');
+
+    
     const email = document.getElementById('email-input-login').value;
     const senha = document.getElementById('password-input-login').value;
 
@@ -74,5 +87,8 @@ function loginGetToken() {
       .catch(err => {
         console.error('Erro de rede:', err);
         alert('Erro ao conectar-se ao servidor.');
+      }) 
+      .finally (() => {
+        spinner.classList.remove('active');
       });
     }
